@@ -1,0 +1,56 @@
+[redux]
+
+1. 하나의 상태를 가진다. state = {}
+2. 인가된 함수로 데이터를 관리함. (dispatch, reducer) => 데이터를 외부에서 직접적으로 제어하지 못하게 함으로써 의도하지 않은 행동을 차단함.
+3. 전달자(store) => 상태변화에 맞게 행동 지령을 내림.
+
+@ 이점
+- "중앙집중적인 data store"를 통한 편리한 애플리케이션 개발 => 독립적인 컴포넌트 변경이 용이함.
+- 코드의 복잡성을 낮춘다.
+- 각각의 상태 변화가 서로에게 영향을 전혀 주지 않음. => 어플리케이션의 개발을 더 쉽게해줌.
+- 크롬 redux tool을 사용하면 시간여행을 할 수 있음 (과거 부터 현재 까지의 디버깅).
+
+@ 핵심 개념
+
+redux의 핵심 => *store* : 정보가 저장되는 곳.
+
+store 안에는 state가 존재.
+
+"store"를 만들고 "reducer"를 만들어서 제공해야함.
+
+## reducer
+- state를 입력값으로 받고, action을 참조해서, "새로운 state 값"을 만들어서 return 해주는 가공자 역할. 
+
+- reducer 함수 정의 및 store 생성
+-> function reducer(oldState, action){
+    // ...
+}
+
+-> const store = Redux.createStore(reducer);
+
+## dispatch 
+1. reducer를 호출해서 state 값을 변경. => 이때 dispatch는 두개의 값을 전달함. *(현재의 state값, action 객체)* 
+    -> store.dispatch({type:'CHANGE_COLOR', color:'blue'});
+    -> action 객체에는 type 값이 항상 존재해야하는 규칙이 존재. 나머지 값은 사용자 맘대로 정의해도됨.
+
+2. 작업 후 subscribe을 이용해서 렌더 함수를 호출.
+
+## render
+- getState()를 통해서 UI를 만드는 것.
+
+-> function render(){
+    const state = store.getState(); // 스토어의 state 값을 가져옴.
+}
+
+## subscribe
+- 사용자가 정의한 함수를 "등록"해 놓으면, state의 값이 바뀔 때 마다 정의한 함수가 호출 되면서 UI가 갱신됨. -> 자동화
+
+-> store.subscribe(render); => 사용자가 정의한 render라는 이름의 함수를 subscribe에 등록함.
+
+@라이프 사이클
+
+action 이 일어남 -> dispatch를 통해 -> store에게 전달 -> store는 reducer를 호출하여 최종적인 state 값을 결정.
+
+state의 값이 바뀌면 -> subscribe에 등록된 함수를 통해 각각의 UI가 계획된 대로 render 됨.
+
+
