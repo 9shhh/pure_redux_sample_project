@@ -47,10 +47,15 @@ store 안에는 state가 존재.
 
 -> store.subscribe(render); => 사용자가 정의한 render라는 이름의 함수를 subscribe에 등록함.
 
-@라이프 사이클
+@@라이프 사이클
 
-action 이 일어남 -> dispatch를 통해 -> store에게 전달 -> store는 reducer를 호출하여 최종적인 state 값을 결정.
+view에서 action 이 일어남(dispatch에게 요청할 action을 전달) -> dispatch() 를 통해 -> store에게 전달 -> store는 reducer를 호출하여, 
+이전의 state와 action을 통해 최종적인 state 값을 결정 후 반환 -> state의 값이 바뀌면 -> subscribe에 등록된 함수를 통해 각각의 UI가 계획된 대로 view에 render 됨.
 
-state의 값이 바뀌면 -> subscribe에 등록된 함수를 통해 각각의 UI가 계획된 대로 render 됨.
+※주의, 새로운 state를 만들때는 이전의 state의 원본을 직접 바꾸지 않고, 이전 state의 복제본을 만들어 그것을 수정하여 새로운 state를 만들어야함. => 예기치 못한 상태 변화를 막을 수 있음.
+
+참고 자료
+https://www.youtube.com/watch?v=zMTqWoe25aU&list=PLuHgQVnccGMB-iGMgONoRPArZfjRuRNVc&index=15 (3:20 - 3:42)
 
 
+리덕스 에코시스템 => 리덕스 미들웨어로 다양한 리덕스 미들웨어 존재
