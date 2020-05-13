@@ -29,7 +29,7 @@ store 안에는 state가 존재.
 -> const store = Redux.createStore(reducer);
 
 ## dispatch 
-1. reducer를 호출해서 state 값을 변경. => 이때 dispatch는 두개의 값을 전달함. *(현재의 state값, action 객체)* 
+1. store 에서 reducer를 호출하여 state 값을 변경. => 이때 dispatch는 두개의 값을 전달함. *(이전의 state값, action 객체)* 
     -> store.dispatch({type:'CHANGE_COLOR', color:'blue'});
     -> action 객체에는 type 값이 항상 존재해야하는 규칙이 존재. 나머지 값은 사용자 맘대로 정의해도됨.
 
