@@ -19,7 +19,7 @@ store 안에는 state가 존재.
 "store"를 만들고 "reducer"를 만들어서 제공해야함.
 
 ## reducer
-- state를 입력값으로 받고, action을 참조해서, "새로운 state 값"을 만들어서 return 해주는 가공자 역할. 
+- 이전 state와 요청된 action을 참조해서, "새로운 state 값"을 만들어서 return 해주는 가공자 역할. 
 
 - reducer 함수 정의 및 store 생성
 -> function reducer(oldState, action){
